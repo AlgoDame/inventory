@@ -1,7 +1,7 @@
 import express, { Request, Response, Application } from 'express';
-import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import router from './routes/index';
+import mongoose from 'mongoose';
 
 dotenv.config();
 
@@ -15,13 +15,10 @@ app.get('/', (req: Request, res: Response) => {
   res.send('Welcome to Express & TypeScript Server');
 });
 
-mongoose.connect('mongodb://localhost:27017');
+mongoose.connect('mongodb://localhost:27017/sampledb');
 mongoose.connection.once('open', () => {
-    console.log('::: Connected to MongoDB :::' );
-})
-mongoose.connection.on('error', () => {
-    console.error('::: Error connecting to MongoDB :::' );
-})
+  console.log('::: Connected to MongoDB :::');
+});
 
 app.listen(port, () => {
   console.log(`::: Server is listening at http://localhost:${port} :::`);
